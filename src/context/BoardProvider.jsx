@@ -1,4 +1,5 @@
 // src/context/BoardProvider.jsx
+import useOfflineSync from "../hooks/useOfflineSync";
 import React, { createContext, useReducer, useEffect } from "react";
 import { boardReducer, initialBoardState } from "./boardReducer";
 
@@ -32,6 +33,7 @@ export function BoardProvider({ children }) {
     initialBoardState,
     loadInitialState
   );
+    useOfflineSync(state, dispatch);
 
   // Persist ONLY the present state (important for undo/redo correctness)
   useEffect(() => {

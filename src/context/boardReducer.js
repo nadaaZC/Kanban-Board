@@ -27,7 +27,7 @@ export function boardReducer(state, action) {
   const { present } = state;
 
   switch (action.type) {
-    /* ===== LISTS ===== */
+    /*lists*/
     case "ADD_LIST": {
       const newList = {
         id: uuidv4(),
@@ -98,7 +98,7 @@ export function boardReducer(state, action) {
       });
     }
 
-    /* ===== CARDS ===== */
+    /*cards*/
     case "ADD_CARD": {
       const { listId, title } = action.payload;
       const id = uuidv4();
@@ -192,7 +192,7 @@ export function boardReducer(state, action) {
       return withHistory(state, { ...present, lists });
     }
 
-    /* ===== UNDO / REDO ===== */
+    /*undo/redo*/
     case "UNDO": {
       if (state.past.length === 0) return state;
       const previous = state.past[state.past.length - 1];
@@ -213,7 +213,7 @@ export function boardReducer(state, action) {
       };
     }
 
-    /* ===== META (NO HISTORY) ===== */
+    /*meta(no hystory)*/
     case "MARK_SYNCED": {
       return {
         ...state,
